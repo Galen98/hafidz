@@ -11,7 +11,11 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <h2 class="text-xl font-semibold mb-4">Data Santri</h2>
-                    <div class="overflow-x-auto">
+                    <form action="{{route('santri.add')}}" method="GET">
+                    <x-light-button><i class="fa-solid fa-plus"></i> {{ __('Tambah santri baru') }}</x-light-button>
+                    </form>
+
+                    <div class="overflow-x-auto mt-3">
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-100">
                             <tr>

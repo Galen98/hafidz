@@ -20,6 +20,7 @@ Route::middleware('auth')->group(function () {
 
     //santri
     Route::get('/santri', [SantriController::class, 'index'])->name('santri.index');
+    Route::get('/santri/add', [SantriController::class, 'add'])->name('santri.add');
 });
 
 require __DIR__.'/auth.php';

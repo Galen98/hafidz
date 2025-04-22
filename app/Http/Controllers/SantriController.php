@@ -12,4 +12,9 @@ class SantriController extends Controller
     {
         return view('santri.santri-index');
     }
+
+    public function add(): View
+    {
+        return view('santri.santri-add');
+    }
 }
