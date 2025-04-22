@@ -3,9 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Riyadhul Quran</title>
+        <title>Riyadhul Quran{{ isset($title) ? ' - ' . $title : '' }}</title>
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <!-- Styles / Scripts -->
         @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
@@ -38,30 +39,23 @@
                                         Log in
                                     </a>
 
-                                    @if (Route::has('register'))
-                                        <a
-                                            href="{{ route('register') }}"
-                                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:focus-visible:ring-white"
-                                        >
-                                            Register
-                                        </a>
-                                    @endif
+                                    {{-- @if (Route::has('register'))
+                                        
+                                    @endif --}}
                                 @endauth
                                 <a
                                         href="{{ url('/dashboard') }}"
                                         class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:focus-visible:ring-white"
                                     >
-                                        Daftar Rekap Santri
+                                        Rekap Santri
                                     </a>
                             </nav>
                         @endif
                     </header>
 
                     <main class="mt-6">
-                        <div class="grid gap-6 lg:grid-cols-2 lg:gap-8">
-                        </div>
+                        {{$slot}}
                     </main>
-
                     <footer class="py-16 text-center text-sm text-black">
                         &copy;{{date('Y')}} Rekap Hafalan Riyadhul Quran
                     </footer>

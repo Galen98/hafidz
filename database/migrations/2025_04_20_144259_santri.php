@@ -11,7 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('santri', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama');
+            $table->string('nis')->unique();
+            $table->string('no_hp_wali');
+            $table->string('barcode', 255)->nullable();
+            $table->boolean('status')->default(1);
+            $table->integer('angkatan');
+            $table->date('tgl_lahir');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -19,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('santri');    
     }
 };

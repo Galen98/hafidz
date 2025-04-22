@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link>
+                    <x-nav-link :href="route('santri.index')" :active="request()->routeIs('santri.index')">
                         {{ __('Santri') }}
                     </x-nav-link>
                 </div>
@@ -68,6 +68,10 @@
                             <x-dropdown-link :href="route('profile.edit')">
                                 {{ __('Ujian Kenaikan Juz') }}
                             </x-dropdown-link>
+                            <div class="px-4 py-2 text-sm text-gray-700 font-semibold">
+                                Kelulusan
+                            </div>
+                            <hr/>
                         </x-slot>
                     </x-dropdown>
                 </div>
