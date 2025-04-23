@@ -17,6 +17,7 @@ class SantriService
     }
 
     public function store(array $data){
+        $data['status'] = 1;
         return $this->repo->create($data);
     }
 }

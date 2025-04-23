@@ -11,7 +11,7 @@ class StoreSantriRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,7 +25,8 @@ class StoreSantriRequest extends FormRequest
             'nama' => 'required|string|max:255',
             'nis' => 'required|unique:santri,nis',
             'tgl_lahir' => 'required',
-            'no_hp_wali' => 'required|numeric'
+            'no_hp_wali' => 'required|numeric',
+            'angkatan' => 'required'
         ];
     }
 }

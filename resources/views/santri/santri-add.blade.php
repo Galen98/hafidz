@@ -6,7 +6,7 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-12" id="santri-page">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
@@ -18,7 +18,7 @@
                         {{ __("Lengkapi formulir di bawah untuk menambahkan data santri baru.") }}
                     </p>
 
-                    <form action="">
+                    <form action="{{ route('santri.store') }}" method="POST">
                         @csrf
                         <div class="mt-3">
                             <x-input-label for="nis" :value="__('NIS (Nomor Induk Siswa)')" />

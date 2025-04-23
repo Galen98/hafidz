@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('nama');
             $table->string('nis')->unique();
             $table->string('no_hp_wali');
-            $table->string('barcode', 255)->nullable();
             $table->boolean('status')->default(1);
             $table->integer('angkatan');
             $table->date('tgl_lahir');

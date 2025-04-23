@@ -72,6 +72,9 @@
                                 Kelulusan
                             </div>
                             <hr/>
+                            <x-dropdown-link :href="route('profile.edit')">
+                                {{ __('Form Kelulusan') }}
+                            </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>
                 </div>
@@ -92,7 +95,10 @@
                 
                         <x-slot name="content">
                             <x-dropdown-link :href="route('profile.edit')">
-                                {{ __('Data rekap hafalan') }}
+                                {{ __('Laporan rekap hafalan') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('profile.edit')">
+                                {{ __('Laporan kelulusan santri') }}
                             </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>

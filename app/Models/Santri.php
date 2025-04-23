@@ -14,7 +14,6 @@ class Santri extends Model
         'tgl_lahir',
         'no_hp_wali',
         'status',
-        'angkatan',
-        'barcode'
+        'angkatan'
     ];
 }

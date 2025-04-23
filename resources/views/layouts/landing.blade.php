@@ -13,6 +13,7 @@
             @vite(['resources/css/app.css', 'resources/js/app.js'])
         @else
         @endif
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     </head>
     <body class="font-sans antialiased light:bg-black light:text-dark/50">
         <div class="bg-gray-50 text-black/50 light:bg-black light:text-dark/50">
@@ -62,5 +63,6 @@
                 </div>
             </div>
         </div>
+        @yield('scripts')
     </body>
 </html>
