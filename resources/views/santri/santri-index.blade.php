@@ -11,6 +11,33 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <h2 class="text-xl font-semibold mb-4">Data Santri</h2>
+                    <div class="flex items-center gap-4 mb-4 flex-wrap">
+                        {{-- Dropdown per_page --}}
+                        <form method="GET" action="{{ route('santri.index') }}" class="flex items-center">
+                            <label for="per_page" class="mr-2 text-sm">Tampilkan</label>
+                            <select name="per_page" id="per_page" onchange="this.form.submit()" class="text-sm border-gray-300 py-1 rounded">
+                                <option value="10" {{ $perPage == 10 ? 'selected' : '' }}>10</option>
+                                <option value="20" {{ $perPage == 20 ? 'selected' : '' }}>20</option>
+                                <option value="30" {{ $perPage == 30 ? 'selected' : '' }}>30</option>
+                            </select>
+                        </form>
+                    
+                        {{-- Search bar --}}
+                        <form action="{{ route('santri.index') }}" method="GET" class="flex">
+                            <input
+                                type="text"
+                                name="cari_nis"
+                                placeholder="Cari data.."
+                                class="text-sm px-3 py-1 border border-gray-300 rounded-l-md focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                            />
+                            <button
+                                type="submit"
+                                class="bg-sky-600 text-white px-3 py-1 rounded-r-md text-sm hover:bg-sky-700 transition"
+                            >
+                                <i class="fa fa-search" aria-hidden="true"></i> Cari
+                            </button>
+                        </form>
+                    </div>                    
                     @if(Auth::user()->role == '0')
                     <form action="{{route('santri.add')}}" method="GET">
                     <x-light-button><i class="fa-solid fa-plus"></i> {{ __('Tambah santri baru') }}</x-light-button>
@@ -30,19 +57,28 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200">
+                        @foreach($santri as $index => $santris)
                             <tr>
-                                <td class="px-6 py-4 text-sm text-gray-900">1</td>
-                                <td class="px-6 py-4 text-sm text-gray-900">Ahmad</td>
-                                <td class="px-6 py-4 text-sm text-gray-900">123456</td>
-                                <td class="px-6 py-4 text-sm text-gray-900">2005-07-15</td>
-                                <td class="px-6 py-4 text-sm text-gray-900">2023</td>
+                                <td class="px-6 py-4 text-sm text-gray-900">{{ $index + 1 }}.</td>
+                                <td class="px-6 py-4 text-sm capitalize text-gray-900">{{$santris->nama}}</td>
+                                <td class="px-6 py-4 text-sm text-gray-900">{{$santris->nis}}</td>
+                                <td class="px-6 py-4 text-sm text-gray-900">{{ \Carbon\Carbon::parse($santris->tgl_lahir)->format('d/m/Y') }}
+                                </td>
+                                <td class="px-6 py-4 text-sm text-gray-900">Angkatan {{$santris->angkatan}}</td>
                                 <td class="px-6 py-4 text-sm relative">
                                     <x-primary-button>{{ __('Lihat') }}</x-primary-button>
-                                </td>
-                                
+                                </td> 
                             </tr>
+                        @endforeach
+
+                        @if($santri->isEmpty())
+                            <tr>
+                                <td colspan="7" class="text-center">Data kosong</td>
+                            </tr>
+                        @endif
                         </tbody>
                     </table>
+                    {{ $santri->appends(['per_page' => $perPage])->links() }}
                     </div>
                 </div>
             </div>

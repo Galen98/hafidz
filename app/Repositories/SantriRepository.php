@@ -10,6 +10,10 @@ class SantriRepository {
         return Santri::all();
     }
 
+    public function allPaginated($perPage) {
+        return Santri::paginate($perPage);
+    }
+
     public function create(array $data) {
         return Santri::create($data);
     }

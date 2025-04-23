@@ -6,7 +6,7 @@
                 <div class="flex items-center border-gray-300 rounded-full shadow-sm">
                     <input
                         type="text"
-                        name="q"
+                        name="cari_nis"
                         placeholder="Ketik NIS Santri"
                         class="w-full px-5 py-3 focus:outline-none text-gray-700 rounded-l-full"
                     />

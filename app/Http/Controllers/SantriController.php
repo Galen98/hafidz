@@ -17,9 +17,11 @@ class SantriController extends Controller
         $this->santriservice = $santriservice;
     }
 
-    public function index(): View
+    public function index(Request $request): View
     {
-        return view('santri.santri-index');
+        $perPage = $request->get('per_page', 10);
+        $santri = $this->santriservice->getAllPaginate($perPage);
+        return view('santri.santri-index', compact('santri','perPage'));
     }
 
     public function add(): View

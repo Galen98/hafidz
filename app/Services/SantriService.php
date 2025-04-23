@@ -16,6 +16,10 @@ class SantriService
         return $this->repo->all();
     }
 
+    public function getAllPaginate($perPage) {
+        return $this->repo->allPaginated($perPage);
+    }
+
     public function store(array $data){
         $data['status'] = 1;
         return $this->repo->create($data);
