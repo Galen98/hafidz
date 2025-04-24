@@ -31,8 +31,9 @@ Route::middleware('auth')->group(function () {
 
     //santri
     Route::get('/santri', [SantriController::class, 'index'])->name('santri.index');
+    Route::get('/santri/download', [SantriController::class, 'downloadQr'])->name('santri.download');
     Route::get('/santri/{id}', [SantriController::class, 'view'])->name('santri.view');
-    Route::get('/santri/download', [SantriController::class, 'download'])->name('santri.download');
+    
     
 });
 

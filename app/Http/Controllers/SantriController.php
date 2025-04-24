@@ -71,13 +71,16 @@ class SantriController extends Controller
     }
 
     //download qr code
-    public function download(Request $request) {
-        $nis = $request->query('nisqr');
+    public function downloadQr(Request $request) {
+        $nis = $request->query('nisqr') ?? 'default_nis';
+        $svg = QrCode::format('svg')->size(300)->generate($nis);
+    
+    // Set the filename for the download
+    $filename = 'qrcode_' . $nis . '.svg';
 
-        $filename = 'qrcode_' . $nis . '.png';
-        $path = 'qrcodes/' . $filename;
-
-        Storage::disk('public')->put($path, QrCode::format('png')->size(300)->generate($nis));
-        return response()->download(storage_path('app/public/' . $path))->deleteFileAfterSend(true);
+    // Return the SVG file directly with the correct headers
+    return response($svg)
+        ->header('Content-Type', 'image/svg+xml')
+        ->header('Content-Disposition', 'attachment; filename="' . $filename . '"');
     }
 }
