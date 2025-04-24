@@ -8,6 +8,9 @@ use App\Services\SantriService;
 use App\Http\Requests\StoreSantriRequest;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class SantriController extends Controller
 {
@@ -35,6 +38,16 @@ class SantriController extends Controller
         return redirect()->back()->with('success', 'Data berhasil ditambahkan.');
     }
 
+    //view santri
+    public function view($id) {
+        $santri = $this->santriservice->getById($id);
+        return view('santri.santri-view', compact('santri'));
+    }
+
+    public function destroy($id) {
+        $this->santriservice->destroy($id);
+        return redirect()->to('santri')->with('success', 'Data berhasil dihapus.');
+    }
     //generate last nis
     public function generateNis(Request $request)
     {
@@ -55,5 +68,16 @@ class SantriController extends Controller
         return response()->json([
             'urut' => str_pad($urutan, 3, '0', STR_PAD_LEFT)
         ]);
+    }
+
+    //download qr code
+    public function download(Request $request) {
+        $nis = $request->query('nisqr');
+
+        $filename = 'qrcode_' . $nis . '.png';
+        $path = 'qrcodes/' . $filename;
+
+        Storage::disk('public')->put($path, QrCode::format('png')->size(300)->generate($nis));
+        return response()->download(storage_path('app/public/' . $path))->deleteFileAfterSend(true);
     }
 }

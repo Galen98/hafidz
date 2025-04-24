@@ -66,7 +66,9 @@
                                 </td>
                                 <td class="px-6 py-4 text-sm text-gray-900">Angkatan {{$santris->angkatan}}</td>
                                 <td class="px-6 py-4 text-sm relative">
+                                <form action="{{ route('santri.view', $santris->id) }}" method="GET">
                                     <x-primary-button>{{ __('Lihat') }}</x-primary-button>
+                                </form>
                                 </td> 
                             </tr>
                         @endforeach

@@ -12,6 +12,7 @@ Route::middleware([
     //santri
     Route::get('/santri/add', [SantriController::class, 'add'])->name('santri.add');
     Route::post('/santri/store', [SantriController::class, 'store'])->name('santri.store');
+    Route::delete('/santri/{id}', [SantriController::class, 'destroy'])->name('santri.destroy');
 });
 
 Route::get('/', function () {
@@ -30,6 +31,9 @@ Route::middleware('auth')->group(function () {
 
     //santri
     Route::get('/santri', [SantriController::class, 'index'])->name('santri.index');
+    Route::get('/santri/{id}', [SantriController::class, 'view'])->name('santri.view');
+    Route::get('/santri/download', [SantriController::class, 'download'])->name('santri.download');
+    
 });
 
 //api

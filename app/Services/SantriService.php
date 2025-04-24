@@ -24,4 +24,12 @@ class SantriService
         $data['status'] = 1;
         return $this->repo->create($data);
     }
+
+    public function getById($id) {
+        return $this->repo->find($id);
+    }
+
+    public function destroy($id) {
+        return $this->repo->delete($id);
+    }
 }
