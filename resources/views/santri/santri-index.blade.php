@@ -26,7 +26,8 @@
                         <form action="{{ route('santri.index') }}" method="GET" class="flex">
                             <input
                                 type="text"
-                                name="cari_nis"
+                                name="search"
+                                value="{{ request('search') }}"
                                 placeholder="Cari data.."
                                 class="text-sm px-3 py-1 border border-gray-300 rounded-l-md focus:outline-none focus:ring-1 focus:ring-indigo-500"
                             />

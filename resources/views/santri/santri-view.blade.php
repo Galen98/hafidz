@@ -26,19 +26,29 @@
                     <x-light-button><i class="fa-solid fa-download"></i> {{ __('Download') }}</x-light-button>
                     </form>
                     <hr class="mt-3">
+                    <form action="{{route('santri.update', $santri->id)}}" method="POST" class="mt-2">
+                    @csrf
+                    @method('PATCH')
                     <div class="mt-3">
                         <x-input-label for="name" :value="__('Nama lengkap')" />
                         <x-text-input id="name" name="nama" value="{{$santri->nama}}" type="text" class="mt-1 block w-full" required autofocus autocomplete="nama" readonly/>
                         <x-input-error class="mt-2" :messages="$errors->get('nama')" />
                     </div>
                     <div class="mt-3">
+                        <x-input-label for="no_hp_wali" :value="__('No HP Wali')" />
+                        <x-text-input id="no_hp_wali" name="no_hp_wali" value="{{$santri->no_hp_wali}}" type="text" class="mt-1 block w-full" required autofocus autocomplete="no_hp_wali" readonly/>
+                        <x-input-error class="mt-2" :messages="$errors->get('no_hp_wali')" />
+                    </div>
+                    <div class="mt-3">
                         <x-input-label for="tgl_lahir" :value="__('Tanggal lahir')" />
                         <x-text-input id="tgl_lahir" name="tgl_lahir" type="date" class="mt-1 block w-full" required autofocus autocomplete="tgl_lahir" disabled value="{{$santri->tgl_lahir}}"/>
                         <x-input-error class="mt-2" :messages="$errors->get('tgl_lahir')" />
                     </div>
-                    <div class="flex items-center gap-4 mt-4 edit-btn">
-                        <x-primary-button><i class="far fa-edit"></i> {{ __('Edit') }}</x-primary-button>
+                    <div class="flex items-center gap-4 mt-4">
+                        <x-primary-button class="edit-btn" type="button"><i class="far fa-edit"></i> {{ __('Edit') }}</x-primary-button>
+                        <x-primary-button class="edit-btn-submit" style="display:none"><i class="fas fa-save"></i> {{ __('Simpan') }}</x-primary-button>
                     </div>
+                    </form>
                     </div>
                     @include('profile.partials.santri-delete-form', ['id' => $santri->id])
                 </div>

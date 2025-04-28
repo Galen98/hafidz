@@ -34,5 +34,19 @@ $(document).ready(function(){
                 })
             }
        }
+
+       $('.edit-btn').on('click', function(){
+            $(this).text('Simpan')
+            $(this).removeClass('edit-btn')
+            $('#name').attr('readonly', false)
+            $('#tgl_lahir').attr('disabled', false)
+            $(this).hide()
+            $('.edit-btn-submit').show()
+       })
+
+       $('.edit-btn-submit').on('click', function(){
+        $(this).closest('form').submit();
+      });
+       
     }
 })

@@ -23,7 +23,19 @@ class SantriController extends Controller
     public function index(Request $request): View
     {
         $perPage = $request->get('per_page', 10);
-        $santri = $this->santriservice->getAllPaginate($perPage);
+
+        $query = Santri::query();
+
+        if ($request->has('search') && $request->search != '') {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('nama', 'like', "%{$search}%")
+                ->orWhere('angkatan', 'like', "%{$search}%")
+                ->orWhere('nis', 'like', "%{$search}%");
+            });
+        }
+
+        $santri = $query->paginate($perPage);
         return view('santri.santri-index', compact('santri','perPage'));
     }
 
@@ -74,13 +86,16 @@ class SantriController extends Controller
     public function downloadQr(Request $request) {
         $nis = $request->query('nisqr') ?? 'default_nis';
         $svg = QrCode::format('svg')->size(300)->generate($nis);
-    
-    // Set the filename for the download
-    $filename = 'qrcode_' . $nis . '.svg';
+        $filename = 'qrcode_' . $nis . '.svg';
 
-    // Return the SVG file directly with the correct headers
     return response($svg)
         ->header('Content-Type', 'image/svg+xml')
         ->header('Content-Disposition', 'attachment; filename="' . $filename . '"');
+    }
+
+    //update data santri
+    public function update($id, Request $request) {
+        $this->santriservice->updates($id, $request->only(['nama', 'tgl_lahir', ['no_hp_wali']]));
+        return redirect()->back()->with('success', 'Data berhasil diedit.');
     }
 }

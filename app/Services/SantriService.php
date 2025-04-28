@@ -32,4 +32,8 @@ class SantriService
     public function destroy($id) {
         return $this->repo->delete($id);
     }
+
+    public function updates($id, array $data) {
+        return $this->repo->update($id, $data);
+    }
 }
