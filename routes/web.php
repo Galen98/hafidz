@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SantriController;
+use App\Http\Controllers\UstadzController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\RoleMiddleware;
 
@@ -14,6 +15,9 @@ Route::middleware([
     Route::post('/santri/store', [SantriController::class, 'store'])->name('santri.store');
     Route::delete('/santri/{id}', [SantriController::class, 'destroy'])->name('santri.destroy');
     Route::patch('/santri/{id}', [SantriController::class, 'update'])->name('santri.update');
+
+    //ustadz
+    Route::get('/ustadz', [UstadzController::class, 'index'])->name('ustadz.index');
 });
 
 Route::get('/', function () {

@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('daftar_kelompok', function (Blueprint $table) {
             $table->id();
+            $table->integer('users_id');
+            $table->integer('santri_id');
             $table->timestamps();
         });
     }
