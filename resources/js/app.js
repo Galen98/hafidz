@@ -5,3 +5,4 @@ window.Alpine = Alpine;
 
 Alpine.start();
 import './santri';
+import './ustadz';
