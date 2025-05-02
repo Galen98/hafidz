@@ -16,4 +16,8 @@ class Santri extends Model
         'status',
         'angkatan'
     ];
+
+    public function kelompok() {
+        return $this->hasMany(DaftarKelompok::class, 'santri_id');
+    }
 }

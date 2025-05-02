@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-    Schema::create('presensi', function (Blueprint $table) {
+        Schema::create('presensi_detail', function (Blueprint $table) {
             $table->id();
-            $table->integer('users_id');
-            $table->string('jenis_presensi');
-            $table->integer('keterangan');
+            $table->integer('presensi_id');
+            $table->integer('santri_id');
+            $table->text('keterangan');
             $table->timestamps();
-    });
+        });
     }
 
     /**
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('presensi');
+        Schema::dropIfExists('presensi_detail');
     }
 };

@@ -61,7 +61,7 @@
                                 <td class="px-6 py-4 text-sm text-gray-900">{{ $datas->email }}</td>
                                 <td class="px-6 py-4 text-sm text-gray-900">{{ $datas->no_hp }}</td>
                                 <td class="px-6 py-4 text-sm relative">
-                                <form action="" method="GET">
+                                <form action="{{ route('ustadz.view', $datas->id) }}" method="GET">
                                     <x-primary-button>{{ __('Lihat') }}</x-primary-button>
                                 </form>
                                 </td> 

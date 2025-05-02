@@ -18,8 +18,9 @@ Route::middleware([
 
     //ustadz
     Route::get('/ustadz', [UstadzController::class, 'index'])->name('ustadz.index');
-    Route::post('/ustadz', [UstadzController::class, 'store'])->name('ustadz.store');
     Route::get('/ustadz/add', [UstadzController::class, 'add'])->name('ustadz.add');
+    Route::get('/ustadz/{id}', [UstadzController::class, 'view'])->name('ustadz.view');
+    Route::post('/ustadz', [UstadzController::class, 'store'])->name('ustadz.store'); 
 });
 
 Route::get('/', function () {

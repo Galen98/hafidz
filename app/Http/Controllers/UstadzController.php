@@ -53,5 +53,10 @@ class UstadzController extends Controller
         return view('ustadz.ustadz-add');
     }
 
+    public function view($id) {
+        $ustadz = User::where('id', $id)->first();
+        $santri = User::with('kelompok.santri')->where('id', $id)->get();
+        return view('ustadz.ustadz-view', compact('ustadz', 'santri'));
+    }
 
 }

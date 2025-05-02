@@ -47,4 +47,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function kelompok() {
+        return $this->hasMany(DaftarKelompok::class, 'users_id');
+    }
 }
