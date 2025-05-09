@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Models\DaftarKelompok;
+use App\Services\UstadzService;
 use App\Models\User;
 use Illuminate\View\View;
 
@@ -55,8 +53,14 @@ class UstadzController extends Controller
 
     public function view($id) {
         $ustadz = User::where('id', $id)->first();
-        $santri = User::with('kelompok.santri')->where('id', $id)->get();
+        $santri = User::with('kelompok.santri')->where('id', $id)->first();
+        
         return view('ustadz.ustadz-view', compact('ustadz', 'santri'));
     }
+
+    public function update(){
+
+    }
+    
 
 }

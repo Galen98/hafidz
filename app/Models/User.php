@@ -51,4 +51,9 @@ class User extends Authenticatable
     public function kelompok() {
         return $this->hasMany(DaftarKelompok::class, 'users_id');
     }
+
+    public function santri()
+    {
+        return $this->hasManyThrough(Santri::class, DaftarKelompok::class, 'users_id', 'id', 'id', 'santri_id');
+    }
 }

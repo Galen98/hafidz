@@ -50,7 +50,9 @@
                     </div>
                     </form>
                     </div>
-                    @include('profile.partials.santri-delete-form', ['id' => $santri->id])
+                    @if(Auth::user()->role == '0')
+                        @include('profile.partials.santri-delete-form', ['id' => $santri->id])
+                    @endif
                 </div>
             </div>
         </div>   
